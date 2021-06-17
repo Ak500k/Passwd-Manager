@@ -11,17 +11,19 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 class User(db.Model, UserMixin):
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(30), nullable = False)
     email = db.Column(db.String(120), unique = True, nullable = False)
     password = db.Column(db.String(60), nullable = False)
     
-    passwords = db.relationship('PasswordManager', backref="owner") # adding realtionship bertween user table and password manager table.
+    passwords = db.relationship('PasswordManager', backref='owner') # adding realtionship bertween user table and password manager table.
 
     def __repr__(self):
         return f"User {self.name}, {self.email}, {self.password} " 
 
 class PasswordManager(db.Model):
+    __tablename__ = 'password_manager'
     sl = db.Column(db.Integer, primary_key = True)
     webaddress = db.Column(db.String(100), nullable = False)
     username = db.Column(db.String(50), nullable = False)

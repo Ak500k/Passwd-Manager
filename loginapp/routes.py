@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for
 from loginapp import app, db, bcrypt
 from loginapp.forms import RegistrationForm, LoginForm, AddPassword
 from loginapp.models import User, PasswordManager
-from flask_login import login_user # this line is important. Allows us to login the user.
+from flask_login import login_user, current_user # this line is important. Allows us to login the user.
 
 """
     File containes only routes
@@ -64,16 +64,24 @@ def login():
 # ISOLATE FROM OUTTER SHELL
 @app.route('/manager')
 def manager():
+    # print(current_user.id)
+    # print(current_user.name)
     return render_template('manager.html', title='demo')
 
 @app.route('/manager/add', methods=['GET', 'POST'])
 def add():
     form = AddPassword()
-
+    
     print(form.errors) # do not put this line on production app
     if form.validate_on_submit():
-        field = PasswordManager(webaddress = form.webaddress.data, username = form.username.data, 
-        email = form.email.data, password = form.password.data)
+        print(current_user.id)
+        name = db.session.query(User).filter_by(id=current_user.id).first() # first creating the instence of user table then adding it to name
+        field = PasswordManager(webaddress = form.webaddress.data, 
+                                username = form.username.data, 
+                                email = form.email.data, 
+                                password = form.password.data, 
+                                owner = name)
+
         db.session.add(field) # adding user to table
         db.session.commit()  # commiting the table
         flash("Field Added.", 'success')
@@ -82,5 +90,5 @@ def add():
 
 @app.route('/manager/display', methods=['GET', 'POST'])
 def display():
-    fields = PasswordManager.query.all()
+    fields = db.session.query(PasswordManager).filter_by(owner_id=current_user.id).all()
     return render_template('display.html', title='dispaly', elements=fields)

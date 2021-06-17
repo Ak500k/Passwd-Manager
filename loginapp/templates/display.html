@@ -68,7 +68,7 @@
                 <tbody>
                     {% for element in elements %}
                     <tr>
-                        <td>{{ element.sl }}</td>
+                        <td>{{ loop.index }}</td>
                         <td>{{ element.webaddress }}</td>
                         <td>{{ element.username }}</td>
                         <td>{{ element.email }}</td>
