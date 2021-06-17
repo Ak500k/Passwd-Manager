@@ -66,13 +66,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for element in elements %}
                     <tr>
-                        <td>1</td>
-                        <td>lichess</td>
-                        <td>checkm8e</td>
-                        <td>ashishdungdung6@gmail.com</td>
-                        <td>adsfjoiuojasdflj</td>
+                        <td>{{ element.sl }}</td>
+                        <td>{{ element.webaddress }}</td>
+                        <td>{{ element.username }}</td>
+                        <td>{{ element.email }}</td>
+                        <td>{{ element.password }}</td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
