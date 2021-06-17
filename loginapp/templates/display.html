@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <title>test</title>
+
+    <style>
+
+        /* top part, navbar - inside header */
+        .top {
+            height: 10vh;
+            width: 100vw;
+            /* background-color: rgb(224, 227, 233); */
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .top-wrapper {
+            /* border: 1px solid black; */
+            width: 90%;
+            height: 100%;
+
+            background-color: white;
+
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+        }
+
+        /* main - table, content */
+        .main-table {
+            /* border: 1px solid black; */
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+
+            margin-top: 50px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top">
+            <div class="top-wrapper">
+                <button class="button is-primary is-light">Logout</button>
+            </div>            
+        </div>
+    </header>
+
+    <main>
+        <div class="main-table">
+            <table class="table is-striped is-hoverable is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>SL</th>
+                        <th>WEBSITE</th>
+                        <th>UNAME</th>
+                        <th>EMAIL</th>
+                        <th>PASSWORD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>lichess</td>
+                        <td>checkm8e</td>
+                        <td>ashishdungdung6@gmail.com</td>
+                        <td>adsfjoiuojasdflj</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>

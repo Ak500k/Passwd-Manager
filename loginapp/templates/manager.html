@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    .main-container {
+        height: 100vh;
+        width: 100vw;
+        overflow: auto;
+
+        /* background: url('/static/background.jpg');
+        background-size: cover;
+        background-position: center; */
+    }
+
+    .inner-container {
+        border: 1px solid black;
+        border-radius: 15px;
+        background-color: rgba(255, 228, 196, 0.2);
+        /* background-color: #ffe3c2;
+        opacity: 0.2; */
+        z-index: 1;
+        height: 80vh;
+        margin: 10vh 30% 0%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    .one {
+        padding-top: 20px;
+    }
+
+    .two {
+        /* border: 1px solid black; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .heading {
+        font-size: 48px;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 900;
+        text-transform: capitalize;
+        color: black;
+        margin-bottom: -20px;
+    }
+
+    p {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .four {
+        margin-top: 40px;
+    }
+</style>
+
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="notification is-{{ category }}">
+        <button class="delete"></button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <div class="main-container">
+        <div class="inner-container">
+            <div class="one">
+                <figure class="image is-128x128">
+                    <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+                </figure>
+            </div>
+
+            <div class="two">
+                <h1 class="heading">Hello &</h1>
+                <h1 class="heading">welcome.</h1>
+            </div>
+
+            <div class="three">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Veniam consequatur vitae dolore molestiae
+                    repellendus natus neque. Doloremque deleniti, consectetur
+                    asperiores alias maxime ratione! Nam voluptates esse alias
+                    voluptatibus nihil iure!
+                </p>
+            </div>
+
+            <div class="four">
+                <button class="button is-link is-light"><a href="manager/add">Add Password</a></button>
+                <button class="button is-link is-light"><a href="manager/display">Display</a></button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

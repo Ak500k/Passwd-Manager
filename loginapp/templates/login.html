@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    {% if title %}
+    <title>app-{{title}}</title>
+    {% else %}
+    <title>app</title>
+    {% endif %}
+
+    <style>
+        .main-container {
+            border: 1px solid black;
+            width: 100vw;
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- main container for login form -->
+        <div class="box">
+            <div class="block title is-4 ">SignIn</div>
+            <!-- if username and password does not match then error message will be printed here. -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="notification is-{{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <!-- mandator to use this otherwise error -->
+                <div class="field">
+                    {{ form.email.label(class="label") }}
+                    <div class="control">
+                        {% if form.email.errors %}
+                        {{ form.email(class="input is-danger") }}
+    
+                        {% for error in form.email.errors %}
+                        <p class="help is-danger">{{ error }}</p>
+                        {% endfor %}
+    
+                        {% else %}
+                        {{ form.email(class="input", placeholder='eg. demo@email.com') }}
+                        {% endif%}
+    
+                    </div>
+                </div>
+
+                <div class="field">
+                    {{ form.password.label(class="label") }}
+                    <div class="control">
+                        {% if form.password.errors %}
+                        {{ form.password(class="input is-danger") }}
+    
+                        {% for error in form.password.errors %}
+                        <p class="help is-danger">{{ error }}</p>
+                        {% endfor %}
+    
+                        {% else %}
+                        {{ form.password(class="input", placeholder='password') }}
+                        {% endif%}
+    
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        {{ form.remember(type="checkbox") }}
+                        {{ form.remember.label(class="checkbox") }}
+
+                        </label>
+                    </div>
+                </div>
+
+                <div class="control">
+                    <!-- submit btn -->
+                    {{ form.submit_btn(class="button is-primary") }}
+                </div>
+            </form>
+
+            <hr>
+
+            <div class="block is-5">Don't have a account. Register <a href="/register">here</a>.</div>
+        </div>
+    </div>
+</body>
+
+</html>

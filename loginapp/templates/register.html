@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    {% if title %}
+    <title>app-{{title}}</title>
+    {% else %}
+    <title>app</title>
+    {% endif %}
+
+    <style>
+        .main-container {
+            border: 1px solid black;
+            width: 100vw;
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="main-container">  <!-- main container for Register form -->
+        <div class="box">
+            <div class="block title is-4 ">SignUp</div>
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <div class="field"> <!-- name field -->
+                    {{ form.name.label(class="label") }}
+                    <div class="control">
+                        <!-- Adding validation code -->
+                        {% if form.name.errors %} 
+                            {{ form.name(class="input is-danger", type="text", placeholder="Name", value="") }}
+                            {% for error in form.name.errors %}
+                                <p class="help is-danger">{{ error }}</p>
+                            {% endfor %}
+                        {% else %}
+                            {{ form.name(class="input", type="text", placeholder="Name") }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="field"> <!-- email field --> 
+                    {{ form.email.label(class="label") }}
+                    <div class="control">
+                        <!-- Adding validation code -->
+                        {% if form.email.errors %} 
+                            {{ form.email(class="input is-danger", type="text", placeholder="eg. demo@email.com", value="") }}
+                            {% for error in form.email.errors %}
+                                <p class="help is-danger">{{ error }}</p>
+                            {% endfor %}
+                        {% else %}
+                            {{ form.email(class="input", type="email", placeholder="eg. demo@email.com") }}
+                        {% endif %}                        
+                    </div>
+                </div>
+
+                <div class="field"> <!-- password field -->  
+                    {{ form.password.label(class="label") }}
+                    <div class="control">
+                        <!-- Adding validation code -->
+                        {% if form.password.errors %} 
+                            {{ form.password(class="input is-danger", type="password", placeholder="Password", value="") }}
+                            {% for error in form.password.errors %}
+                                <p class="help is-danger">{{ error }}</p>
+                            {% endfor %}
+                        {% else %}
+                            {{ form.password(class="input", type="password", placeholder="Password") }}
+                        {% endif %}                        
+                    </div>
+                </div>
+
+                <div class="field"> <!-- password field -->  
+                    {{ form.confirm_password.label(class="label") }}
+                    <div class="control">
+                        <!-- Adding validation code -->
+                        {% if form.confirm_password.errors %} 
+                            {{ form.confirm_password(class="input is-danger", type="password", placeholder="Repeat password", value="") }}
+                            {% for error in form.confirm_password.errors %}
+                                <p class="help is-danger">{{ error }}</p>
+                            {% endfor %}
+                        {% else %}
+                            {{ form.confirm_password(class="input", type="password", placeholder="Repeat password") }}
+                        {% endif %}   
+                        
+                    </div>
+                </div>
+
+                <div class="control"> <!-- submit btn -->  
+                    {{ form.submit_btn(class="button is-primary") }}
+                </div>
+            </form>
+
+            <hr>
+
+            <div class="block is-5">Already have a account. Login <a href="/login">here</a>.</div>
+        </div>
+    </div>
+</body>
+
+</html>

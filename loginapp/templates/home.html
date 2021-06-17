@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    {% if title %}
+    <title>app-{{title}}</title>
+    {% else %}
+    <title>app</title>
+    {% endif %}
+
+    <style>
+        .main-container {
+            width: 100vw;
+            height: 90vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .center {
+            margin: 0px 20px 0px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #signup-position {
+            transform: translate(0%, -5.5%);
+        }
+
+    </style>
+</head>
+
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="notification is-{{ category }}">
+        <button class="delete"></button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <div class="main-container">
+        <div class="center box" style="height: 200px; width: 200px;">
+            <div class="title is-3">SignIn</div>
+            <div class="block">
+                <a href="login"><button class="button is-primary">Login</button></a>
+            </div>
+        </div>
+
+        <div id="signup-position" class="center box" style="height: 200px; width: 200px;">
+            <div class="title is-3">SignUp</div>
+            <div class="block">
+                <a href="register"><button class="button is-primary">Register</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
