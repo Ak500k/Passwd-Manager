@@ -80,6 +80,7 @@ def add():
         return redirect(url_for('manager'))
     return render_template('add.html', title='add-password', form=form)
 
-@app.route('/manager/display')
+@app.route('/manager/display', methods=['GET', 'POST'])
 def display():
-    return render_template('display.html', title='dispaly')
+    fields = PasswordManager.query.all()
+    return render_template('display.html', title='dispaly', elements=fields)
