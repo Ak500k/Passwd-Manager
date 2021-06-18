@@ -48,7 +48,7 @@
     <header>
         <div class="top">
             <div class="top-wrapper">
-                <button class="button is-primary is-light">Logout</button>
+                <button class="button is-primary is-light"><a href="{{ url_for('logout') }}">Logout</a></button>
             </div>            
         </div>
     </header>
@@ -68,7 +68,7 @@
                 <tbody>
                     {% for element in elements %}
                     <tr>
-                        <td>{{ element.sl }}</td>
+                        <td>{{ loop.index }}</td>
                         <td>{{ element.webaddress }}</td>
                         <td>{{ element.username }}</td>
                         <td>{{ element.email }}</td>

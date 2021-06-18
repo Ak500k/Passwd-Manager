@@ -10,6 +10,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db' # this line means wh
 db = SQLAlchemy(app) # creating the instance of sqlalchemy as db
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
-
+login_manager.login_view = 'login'
+login_manager.login_message_category = 'notification is-danger'
 
 from loginapp import routes
