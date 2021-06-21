@@ -27,7 +27,7 @@
     <div class="main-container">
         <!-- main container for login form -->
         <div class="box">
-            <div class="block title is-4 ">SignIn</div>
+            <div class="block title is-4 ">Enter email</div>
             <!-- if username and password does not match then error message will be printed here. -->
             {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
@@ -43,45 +43,36 @@
                 {{ form.hidden_tag() }}
                 <!-- mandator to use this otherwise error -->
                 <div class="field">
-                    {{ form.email.label(class="label") }}
+                    {{ form.passsword.label(class="label") }}
                     <div class="control">
-                        {% if form.email.errors %}
-                        {{ form.email(class="input is-danger") }}
+                        {% if form.passsword.errors %}
+                        {{ form.passsword(class="input is-danger") }}
     
-                        {% for error in form.email.errors %}
+                        {% for error in form.passsword.errors %}
                         <p class="help is-danger">{{ error }}</p>
                         {% endfor %}
     
                         {% else %}
-                        {{ form.email(class="input", placeholder='eg. demo@email.com') }}
+                        {{ form.passsword(class="input", placeholder='eg. demo@email.com') }}
                         {% endif%}
     
                     </div>
                 </div>
 
                 <div class="field">
-                    {{ form.password.label(class="label") }}
+                    {{ form.confirm_passsword.label(class="label") }}
                     <div class="control">
-                        {% if form.password.errors %}
-                        {{ form.password(class="input is-danger") }}
+                        {% if form.confirm_passsword.errors %}
+                        {{ form.confirm_passsword(class="input is-danger") }}
     
-                        {% for error in form.password.errors %}
+                        {% for error in form.confirm_passsword.errors %}
                         <p class="help is-danger">{{ error }}</p>
                         {% endfor %}
     
                         {% else %}
-                        {{ form.password(class="input", placeholder='password') }}
+                        {{ form.confirm_passsword(class="input", placeholder='eg. demo@email.com') }}
                         {% endif%}
     
-                    </div>
-                </div>
-
-                <div class="field">
-                    <div class="control">
-                        {{ form.remember(type="checkbox") }}
-                        {{ form.remember.label(class="checkbox") }}
-
-                        </label>
                     </div>
                 </div>
 
@@ -89,14 +80,7 @@
                     <!-- submit btn -->
                     {{ form.submit_btn(class="button is-primary") }}
                 </div>
-                <div>
-                    <h5 class="is-5 is-link"><a href="{{ url_for('reset_request') }}">Forgot password</a></h5>
-                </div>
             </form>
-
-            <hr>
-
-            <div class="block is-5">Don't have a account. Register <a href="/register">here</a>.</div>
         </div>
     </div>
 </body>
