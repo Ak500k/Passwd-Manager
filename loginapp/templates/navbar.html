@@ -1,0 +1,30 @@
+{% block navbar %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="/static/navbar.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Raleway&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="header">
+    <h1 class="logo"><a href="{{ url_for('home') }}">Beep!</a></h1>
+    <ul class="main-nav">
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      <li><a href="#">Passwd-Generator</a></li>
+      {% if current_user.is_authenticated %}
+      <li><a href="{{ url_for('logout') }}">Logout</a></li>
+      {% else %}
+      <li><a href="{{ url_for('login') }}">Login</a></li>
+      <li><a href="{{ url_for('register') }}">Register</a></li>
+      {% endif %}
+    </ul>
+  </header>
+{% endblock %}
+{% block content %}
+{% endblock %}
+</body>
+
+</html>

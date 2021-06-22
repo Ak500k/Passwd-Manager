@@ -13,13 +13,15 @@
     <style>
         .main-container {
             border: 1px solid black;
-            width: 100vw;
+            border-radius: 15px;
+            max-width: 100vw;
             height: 100vh;
 
             display: flex;
             justify-content: center;
             align-items: center;
 
+            margin: 10px 10px 10px;
         }
     </style>
 
@@ -27,6 +29,9 @@
 </head>
 
 <body>
+    {% extends "navbar.html" %}
+    {% block content %}
+
     <div class="main-container">  <!-- main container for Register form -->
         <div class="box">
             <div class="block title is-4 ">SignUp</div>
@@ -103,6 +108,8 @@
             <div class="block is-5">Already have a account. Login <a href="/login">here</a>.</div>
         </div>
     </div>
+
+    {% endblock %}
 </body>
 
 </html>
