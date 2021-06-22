@@ -6,42 +6,31 @@
   }
   
   /* class */
-  .header {
-	  border: 1px solid rgb(24, 23, 23);
-	  border-radius: 15px;
-	  margin: 10px 10px 10px;
-	  
-	  display: flex;
-	  justify-content: space-between;
-	  background-color: #FDEDF6;
-  }
-
-  .main-nav {
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-  }
-
-  .logo {
-	font-size: 1.7em;
-	font-family: 'Poppins', sans-serif;
-	letter-spacing: 8px;
-	font-weight: 400;
-	color: black;
+  ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
   }
   
-  .main-nav a {
-	font-size: 0.95em;
-	color: #EA4AA9;
-	font-family: 'Raleway', sans-serif;
-	letter-spacing: 2px;
-	font-weight: 400;
+  h2,
+  h3,
+  a {
+	color: #34495e;
   }
-
-  .main-nav a:hover {
-	color: #485FC7;
+  
+  a {
+	text-decoration: none;
   }
-
+  
+  .logo {
+	margin: 0;
+	font-size: 1.8em;
+  }
+  
+  .main-nav {
+	margin-top: 5px;
+	
+  }
   .logo a,
   .main-nav a {
 	padding: 10px 15px;
@@ -49,42 +38,47 @@
 	text-align: center;
 	display: block;
   }
-
-  body {
-	font-family: "Montserrat", sans-serif;
-	line-height: 1.6;
-	margin: 0;
-	min-height: 100vh;
-	background-color: #f7f5f5;
-  }
-
-  ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
+  
+  .main-nav a {
+	color: #ff5a28;
+	font-size: 1.1em;
   }
   
-  a {
-	text-decoration: none;
-	color: black;
+  .main-nav a:hover {
+	color: #00aeff;
+  }
+  
+  .header {
+	margin: 0.5em;
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
+	border: 1px solid #a2a2a2;
+	background-color: #f8daff;
+	/* -webkit-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75); */
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
   }
   
   /* ================================= 
 	Media Queries
   ==================================== */
   
-  /* @media (min-width: 475px) {
+  @media (min-width: 475px) {
 	.header,
 	.main-nav {
 	  display: flex;
 	}
-	
 	.header {
-	  	flex-direction: column;
-	  	align-items: center;
+	  flex-direction: column;
+	  align-items: center;
+	  .header {
 		width: 80%;
 		margin: 0 auto;
 		max-width: 1150px;
+	  }
 	}
   }
   
@@ -93,5 +87,5 @@
 	  flex-direction: row;
 	  justify-content: space-between;
 	}
-  } */
+  }
   
