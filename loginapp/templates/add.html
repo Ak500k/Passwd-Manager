@@ -24,6 +24,9 @@
 </head>
 
 <body>
+    {% extends "navbar.html" %}
+    {% block content %}
+
     <div class="main-container">
         <!-- main container for Register form -->
         <div class="content-container box">
@@ -98,6 +101,8 @@
             </form>
         </div>
     </div>
+
+    {% endblock %}
 </body>
 
 </html>

@@ -45,13 +45,8 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="top">
-            <div class="top-wrapper">
-                <button class="button is-primary is-light"><a href="{{ url_for('logout') }}">Logout</a></button>
-            </div>            
-        </div>
-    </header>
+    {% extends "navbar.html" %}
+    {% block content %}
 
     <main>
         <div class="main-table">
@@ -79,5 +74,7 @@
             </table>
         </div>
     </main>
+
+    {% endblock %}
 </body>
 </html>
