@@ -21,7 +21,7 @@
             border: 1px solid black;
             border-radius: 15px;
             margin: 10px 10px 10px;
-            
+
 
         }
 
@@ -43,19 +43,23 @@
             margin-right: 10px !important;
             border-radius: 15px;
         }
-
     </style>
+    <script>
+        function hideDiv() {
+            document.getElementById("notifyDiv").style.display = "none";
+        }
+    </script>
 </head>
 
 <body>
     {% extends "navbar.html" %}
     {% block content %}
-    
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
     {% for category, message in messages %}
-    <div class="notify notification is-{{ category }}">
-        <button class="delete"></button>
+
+    <div class="notify notification is-{{ category }}" id="notifyDiv">
+        <button class="delete" onclick="hideDiv()"></button>
         {{ message }}
     </div>
     {% endfor %}
@@ -79,6 +83,8 @@
     </div>
 
     {% endblock %}
+
+    
 </body>
 
 </html>
