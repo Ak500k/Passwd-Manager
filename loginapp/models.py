@@ -16,6 +16,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(30), nullable = False)
     email = db.Column(db.String(120), unique = True, nullable = False)
+    image_file = db.Column(db.String(20), nullable = False, default = 'default.jpg')
     password = db.Column(db.String(60), nullable = False)
     
     passwords = db.relationship('PasswordManager', backref='owner') # adding realtionship bertween user table and password manager table.
@@ -48,4 +49,5 @@ class PasswordManager(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):
-        return f"User {self.sl}: {self.webaddress}, {self.username}, {self.email}, {self.password} " 
+        return f"User {self.sl}: {self.webaddress}, {self.username}, {self.email}, {self.password} "
+

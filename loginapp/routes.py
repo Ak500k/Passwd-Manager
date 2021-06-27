@@ -1,6 +1,9 @@
+import os
+import secrets
+from PIL import Image
 from flask import render_template, flash, redirect, url_for, request
 from loginapp import app, db, bcrypt, mail
-from loginapp.forms import RegistrationForm, LoginForm, AddPassword, RequestResetForm, ResetPasswordForm
+from loginapp.forms import RegistrationForm, LoginForm, AddPassword, RequestResetForm, ResetPasswordForm, UserAccountUpdate
 from loginapp.models import User, PasswordManager
 from flask_login import login_user, current_user, logout_user, login_required # this line is important. Allows us to login the user.
 from flask_mail import Message
@@ -80,7 +83,8 @@ def login():
 def manager():
     # print(current_user.id)
     # print(current_user.name)
-    return render_template('manager.html', title='demo')
+    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+    return render_template('manager.html', title='demo', image_file = image_file)
 
 @app.route('/manager/add', methods=['GET', 'POST'])
 @login_required
@@ -162,3 +166,35 @@ def reset_token(token):
         flash("Your password has been updated. Now you can login.", 'success')
         return redirect(url_for('home'))
     return render_template('reset_token.html', title='Reset Password', form = form)
+
+def save_picture(form_picture):
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join(app.root_path, 'static/profile_pics', picture_fn)
+    
+    output_size = (128, 128)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    i.save(picture_path)
+
+    return picture_fn
+
+@app.route('/manager/account', methods=['GET', 'POST'])
+@login_required
+def account():
+    form = UserAccountUpdate()
+    if form.validate_on_submit():
+        if form.picture.data:
+            picture_file = save_picture(form.picture.data)
+            current_user.image_file = picture_file
+        current_user.name = form.name.data
+        current_user.email = form.email.data
+        db.session.commit()
+        flash('Your account has been updated.', 'success')
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form.name.data = current_user.name
+        form.email.data = current_user.email
+    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+    return render_template('account.html', image_file = image_file, form = form)

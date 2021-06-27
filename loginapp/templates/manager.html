@@ -2,11 +2,13 @@
 <html lang="en">
 
 <head>
+    <title>Account</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <title>Document</title>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,900;1,400&display=swap" rel="stylesheet">
 </head>
 
 <style>
@@ -14,19 +16,12 @@
         height: 100vh;
         width: 100vw;
         overflow: auto;
-
-        /* background: url('/static/background.jpg');
-        background-size: cover;
-        background-position: center; */
     }
 
     .inner-container {
         border: 1px solid black;
         border-radius: 15px;
         background-color: rgba(255, 228, 196, 0.2);
-        /* background-color: #ffe3c2;
-        opacity: 0.2; */
-        z-index: 1;
         height: 80vh;
         margin: 10vh 30% 0%;
 
@@ -38,6 +33,25 @@
 
     .one {
         padding-top: 20px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .is-bordered {
+        border: 2px solid white;
+    }
+
+    .info {
+        padding-left: 30px;
+    }
+
+    .info h1 {
+        font-size: 20px;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 900;
     }
 
     .two {
@@ -70,23 +84,19 @@
     {% extends "navbar.html" %}
     {% block content %}
 
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    {% for category, message in messages %}
-    <div class="notification is-{{ category }}">
-        <button class="delete"></button>
-        {{ message }}
-    </div>
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
-
     <div class="main-container">
         <div class="inner-container">
+
             <div class="one">
                 <figure class="image is-128x128">
-                    <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+                    <img class="is-rounded is-bordered" src="{{ image_file }}">
                 </figure>
+
+                <div class="info">
+                    <h1>{{ current_user.name }} <ion-icon name="create-outline"></ion-icon>
+                    </h1>
+                    <h3>{{ current_user.email }}</h3>
+                </div>
             </div>
 
             <div class="two">
@@ -106,11 +116,16 @@
             <div class="four">
                 <button class="button is-link is-light"><a href="manager/add">Add Password</a></button>
                 <button class="button is-link is-light"><a href="manager/display">Display</a></button>
+                <button class="button is-link is-light"><a href="manager/account">Account</a></button>
             </div>
         </div>
     </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
     {% endblock %}
+
+    
 </body>
 
 </html>
