@@ -57,7 +57,11 @@
         margin-top: 20px;
     }
 </style>
-
+<script>
+    function hideDiv() {
+        document.getElementById("notifyDiv").style.display = "none";
+    }
+</script>
 <body>
     {% extends "navbar.html" %}
     {% block content %}
@@ -66,7 +70,7 @@
     {% if messages %}
     {% for category, message in messages %}
     <div class="notify notification is-{{ category }}">
-        <button class="delete"></button>
+        <button class="delete" onclick="hideDiv()"></button>
         {{ message }}
     </div>
     {% endfor %}
