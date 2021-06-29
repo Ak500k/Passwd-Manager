@@ -56,6 +56,11 @@
     form {
         margin-top: 20px;
     }
+    .notify {
+            margin-left: 10px !important;
+            margin-right: 10px !important;
+            border-radius: 15px;
+        }
 </style>
 <script>
     function hideDiv() {
@@ -69,7 +74,7 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
     {% for category, message in messages %}
-    <div class="notify notification is-{{ category }}">
+    <div class="notify notification is-{{ category }}" id="notifyDiv">
         <button class="delete" onclick="hideDiv()"></button>
         {{ message }}
     </div>
