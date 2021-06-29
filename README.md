@@ -18,5 +18,7 @@ $ python3 -m pip install -r requirements.txt
 $ python3 run.py
 ```
 ## Step 3: 
-```Go to local host @ (localhost:8000/home)```
+```
+Go to local host @ (localhost:8000/home)
+```
 
