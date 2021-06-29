@@ -1,4 +1,4 @@
-# Passwd-Manager
+# BEEP! - Passwd-Manager
 ## Step 1: Installation
 
 ```console
