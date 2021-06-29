@@ -1,6 +1,5 @@
 # Passwd-Manager
-## Step 1:
-## Installation
+## Step 1: Installation
 
 ```console
 # clone the repo
