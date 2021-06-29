@@ -48,34 +48,34 @@
                 {{ form.hidden_tag() }}
                 <!-- mandator to use this otherwise error -->
                 <div class="field">
-                    {{ form.passsword.label(class="label") }}
+                    {{ form.password.label(class="label") }}
                     <div class="control">
-                        {% if form.passsword.errors %}
-                        {{ form.passsword(class="input is-danger") }}
+                        {% if form.password.errors %}
+                        {{ form.password(class="input is-danger") }}
     
-                        {% for error in form.passsword.errors %}
+                        {% for error in form.password.errors %}
                         <p class="help is-danger">{{ error }}</p>
                         {% endfor %}
     
                         {% else %}
-                        {{ form.passsword(class="input", placeholder='eg. demo@email.com') }}
+                        {{ form.password(class="input", placeholder='eg. demo@email.com') }}
                         {% endif%}
     
                     </div>
                 </div>
 
                 <div class="field">
-                    {{ form.confirm_passsword.label(class="label") }}
+                    {{ form.confirm_password.label(class="label") }}
                     <div class="control">
-                        {% if form.confirm_passsword.errors %}
-                        {{ form.confirm_passsword(class="input is-danger") }}
+                        {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="input is-danger") }}
     
-                        {% for error in form.confirm_passsword.errors %}
+                        {% for error in form.confirm_password.errors %}
                         <p class="help is-danger">{{ error }}</p>
                         {% endfor %}
     
                         {% else %}
-                        {{ form.confirm_passsword(class="input", placeholder='eg. demo@email.com') }}
+                        {{ form.confirm_password(class="input", placeholder='eg. demo@email.com') }}
                         {% endif%}
     
                     </div>
