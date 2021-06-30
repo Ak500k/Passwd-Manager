@@ -1,0 +1,3 @@
+loginapp/__pycache__/
+loginapp/test.db
+loginapp/*.pyc
