@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <title>Display</title>
 
     <style>
-
         /* top part, navbar - inside header */
         .top {
             height: 10vh;
@@ -42,8 +42,13 @@
             justify-content: center;
             align-items: center;
         }
+
+        table {
+            text-align: center;
+        }
     </style>
 </head>
+
 <body>
     {% extends "navbar.html" %}
     {% block content %}
@@ -55,12 +60,28 @@
                     <tr>
                         <th>SL</th>
                         <th>WEBSITE</th>
-                        <th>UNAME</th>
+                        <th>USERNAME</th>
                         <th>EMAIL</th>
                         <th>PASSWORD</th>
+                        <th>ACTIONS</th>
                     </tr>
                 </thead>
                 <tbody>
+
+                    {% if elements|length == 0 %}
+                    <tr>
+                        <td colspan="5">
+                            <div class="notification is-warning">
+                                <strong>No record found. Please add <a href="{{url_for('add')}}">here</a>.</strong>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="button is-warning is-light">
+                                <a href="{{url_for('add')}}"><ion-icon name="add-circle-outline" size='large'></ion-icon></a>
+                            </button>
+                        </td>
+                    </tr>
+                    {% else %}
                     {% for element in elements %}
                     <tr>
                         <td>{{ loop.index }}</td>
@@ -68,13 +89,27 @@
                         <td>{{ element.username }}</td>
                         <td>{{ element.email }}</td>
                         <td>{{ element.password }}</td>
+                        <td>
+                            <a href="{{url_for('add')}}"><button class="button is-warning is-light">
+                                    <ion-icon name="add-circle-outline" size='large'></ion-icon>
+                                </button></a>
+                            <a href="/update/{{element.sl}}"><button
+                                    class="button is-success is-light">Update</button></a>
+                            <a href="/delete/{{element.sl}}"><button
+                                    class="button is-danger is-light">Delete</button></a>
+                        </td>
                     </tr>
                     {% endfor %}
+                    {% endif %}
+
                 </tbody>
             </table>
         </div>
     </main>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
     {% endblock %}
 </body>
+
 </html>

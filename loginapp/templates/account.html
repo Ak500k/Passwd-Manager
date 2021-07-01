@@ -101,15 +101,21 @@
                 <div class="field">
                     <!-- name field -->
                     {{ form.name.label(class="label") }}
-                    <div class="control">
+                    <div class="control has-icons-left">
                         <!-- Adding validation code -->
                         {% if form.name.errors %}
                         {{ form.name(class="input is-danger", type="text", placeholder="Name", value="") }}
+                        <span class="icon is-small is-left">
+                            <ion-icon name="person"></ion-icon>
+                        </span>
                         {% for error in form.name.errors %}
                         <p class="help is-danger">{{ error }}</p>
                         {% endfor %}
                         {% else %}
                         {{ form.name(class="input", type="text", placeholder="Name") }}
+                        <span class="icon is-small is-left">
+                            <ion-icon name="person"></ion-icon>
+                        </span>
                         {% endif %}
                     </div>
                 </div>
@@ -117,16 +123,22 @@
                 <div class="field">
                     <!-- email field -->
                     {{ form.email.label(class="label") }}
-                    <div class="control">
+                    <div class="control has-icons-left">
                         <!-- Adding validation code -->
                         {% if form.email.errors %}
                         {{ form.email(class="input is-danger", type="text", placeholder="eg. demo@email.com", value="")
                         }}
+                        <span class="icon is-small is-left">
+                            <ion-icon name="mail" style="font-size: 20px;"></ion-icon>
+                        </span>
                         {% for error in form.email.errors %}
                         <p class="help is-danger">{{ error }}</p>
                         {% endfor %}
                         {% else %}
                         {{ form.email(class="input", type="email", placeholder="eg. demo@email.com") }}
+                        <span class="icon is-small is-left">
+                            <ion-icon name="mail" style="font-size: 20px;"></ion-icon>
+                        </span>
                         {% endif %}
                     </div>
                 </div>

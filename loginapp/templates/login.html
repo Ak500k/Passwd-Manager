@@ -49,35 +49,51 @@
                 <!-- mandator to use this otherwise error -->
                 <div class="field">
                     {{ form.email.label(class="label") }}
-                    <div class="control">
+                    <div class="control has-icons-left has-icons-right">
                         {% if form.email.errors %}
                         {{ form.email(class="input is-danger") }}
-    
+                        <span class="icon is-small is-right">
+                            <ion-icon name="warning" style="font-size: 20px; color: brown;"></ion-icon>
+                        </span>
+                        <span class="icon is-small is-left">
+                            <ion-icon name="mail" style="font-size: 20px;"></ion-icon>
+                        </span>
+
+
                         {% for error in form.email.errors %}
                         <p class="help is-danger">{{ error }}</p>
                         {% endfor %}
-    
+
                         {% else %}
                         {{ form.email(class="input", placeholder='eg. demo@email.com') }}
+                        <span class="icon is-small is-left">
+                            <ion-icon name="mail" style="font-size: 20px;"></ion-icon>
+                        </span>
                         {% endif%}
-    
+
                     </div>
                 </div>
 
                 <div class="field">
                     {{ form.password.label(class="label") }}
-                    <div class="control">
+                    <div class="control has-icons-left">
                         {% if form.password.errors %}
                         {{ form.password(class="input is-danger") }}
-    
+                        <span class="icon is-small is-left">
+                            <ion-icon name="lock-closed" style="font-size: 20px;"></ion-icon>
+                        </span>
+
                         {% for error in form.password.errors %}
                         <p class="help is-danger">{{ error }}</p>
                         {% endfor %}
-    
+
                         {% else %}
                         {{ form.password(class="input", placeholder='password') }}
+                        <span class="icon is-small is-left">
+                            <ion-icon name="lock-closed" style="font-size: 20px;"></ion-icon>
+                        </span>
                         {% endif%}
-    
+
                     </div>
                 </div>
 
@@ -104,6 +120,9 @@
             <div class="block is-5">Don't have a account. Register <a href="/register">here</a>.</div>
         </div>
     </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
     {% endblock %}
 </body>
