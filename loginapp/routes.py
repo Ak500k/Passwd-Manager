@@ -3,7 +3,7 @@ import secrets
 from PIL import Image
 from flask import render_template, flash, redirect, url_for, request
 from loginapp import app, db, bcrypt, mail
-from loginapp.forms import RegistrationForm, LoginForm, AddPassword, RequestResetForm, ResetPasswordForm, UserAccountUpdate
+from loginapp.forms import RegistrationForm, LoginForm, AddPassword, RequestResetForm, ResetPasswordForm, UserAccountUpdate, UpdatePassword
 from loginapp.models import User, PasswordManager
 from flask_login import login_user, current_user, logout_user, login_required # this line is important. Allows us to login the user.
 from flask_mail import Message
@@ -104,7 +104,7 @@ def add():
         db.session.add(field) # adding user to table
         db.session.commit()  # commiting the table
         flash("Field Added.", 'success')
-        return redirect(url_for('manager'))
+        return redirect(url_for('display'))
     return render_template('add.html', title='add-password', form=form)
 
 @app.route('/manager/display', methods=['GET', 'POST'])
@@ -198,3 +198,40 @@ def account():
         form.email.data = current_user.email
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template('account.html', image_file = image_file, form = form)
+
+# Updation and deletion routes
+@app.route('/delete/<int:sl>')
+@login_required
+def delete(sl):
+    # field = PasswordManager.query.filter_by(sl=sl).first()
+    field = db.session.query(PasswordManager).filter_by(sl=sl).first()
+    db.session.delete(field)
+    db.session.commit()
+    print('Field deleted')
+    return redirect(url_for('display'))
+
+@app.route('/update/<int:sl>', methods=['GET', 'POST'])
+@login_required
+def update(sl):
+    form = UpdatePassword()
+    values = db.session.query(PasswordManager).filter_by(sl=sl).first() # first creating the instence of user table then adding it to name
+    print(form.errors) # do not put this line on production app
+    if form.validate_on_submit():
+        values.webaddress = form.webaddress.data
+        values.username = form.username.data
+        values.email = form.email.data
+        values.password = form.password.data
+        print(values)
+        db.session.add(values)
+        db.session.commit()
+
+        return redirect(url_for('display'))
+    elif request.method == 'GET':
+        form.webaddress.data = values.webaddress
+        form.username.data = values.username
+        form.email.data = values.email
+        form.password.data = values.password
+    return render_template('update.html', title='update', form=form)
+    # return render_template('add.html', title='add-password', form=form)
+    # field = PasswordManager.query.filter_by(sl=sl).first()
+    

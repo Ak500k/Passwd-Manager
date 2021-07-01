@@ -48,7 +48,7 @@ class LoginForm(FlaskForm):
 
 
 class AddPassword(FlaskForm):
-    """ Form for add page. Where user will input therir credintial in password generator. """
+    """ Form for add page. Where user will input therir credintial in password manager. """
     webaddress = StringField('Web Address', validators=[DataRequired()])
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
@@ -85,3 +85,12 @@ class UserAccountUpdate(FlaskForm):
             test_condition = User.query.filter_by(email = email.data).first()
             if test_condition:
                 raise ValidationError('Email already exist in database.')
+
+class UpdatePassword(FlaskForm):
+    """ Form for Update page. Where user will update their credintial in password manager. """
+    webaddress = StringField('Web Address', validators=[DataRequired()])
+    username = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+
+    submit_btn = SubmitField('Update')
