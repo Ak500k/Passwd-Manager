@@ -12,16 +12,25 @@
 
     <style>
         .main-container {
-            border: 1px solid black;
-            border-radius: 15px;
-            max-width: 100vw;
-            height: 100vh;
+        border: 2.5px solid #a2a2a2;
+        background-color: #fbecff;
+        border-radius: 15px;
+        max-width: 100vw;
+        height: 100vh;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-            margin: 10px 10px 10px;
+        margin: 10px 10px 10px;
+        }
+
+        .content-container {
+            border: 2.5px solid #a2a2a2;
+            background-color: rgba(255, 228, 196, 0.2);
+            padding-right: 10%;
+            padding-left: 10%;
+            
         }
     </style>
 
@@ -33,7 +42,7 @@
     {% block content %}
 
     <div class="main-container">  <!-- main container for Register form -->
-        <div class="box">
+        <div class="content-container box">
             <div class="block title is-4 ">SignUp</div>
             <form method="POST" action="">
                 {{ form.hidden_tag() }}
