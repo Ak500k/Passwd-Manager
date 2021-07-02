@@ -11,17 +11,26 @@
 
     <style>
         .main-container {
-            border: 1px solid black;
+            border: 2.5px solid #a2a2a2;
+            background-color: #fbecff;
             border-radius: 15px;
             max-width: 100vw;
             height: 100vh;
-
             display: flex;
             justify-content: center;
             align-items: center;
 
             margin: 10px 10px 10px;
         }
+        .content-container {
+            border: 2.5px solid #a2a2a2;
+            background-color: rgba(255, 228, 196, 0.2);
+            padding-right: 8%;
+            padding-left: 8%;
+            
+        }
+
+        
     </style>
 </head>
 
@@ -31,7 +40,7 @@
 
     <div class="main-container">
         <!-- main container for login form -->
-        <div class="box">
+        <div class="content-container box">
             <div class="block title is-4 ">SignIn</div>
             <!-- if username and password does not match then error message will be printed here. -->
             {% with messages = get_flashed_messages(with_categories=true) %}
