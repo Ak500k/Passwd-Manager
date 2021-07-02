@@ -103,7 +103,6 @@ def add():
 
         db.session.add(field) # adding user to table
         db.session.commit()  # commiting the table
-        flash("Field Added.", 'success')
         return redirect(url_for('display'))
     return render_template('add.html', title='add-password', form=form)
 
