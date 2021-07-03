@@ -15,13 +15,19 @@
             background-color: #fbecff;
             border-radius: 15px;
             max-width: 100vw;
-            height: 100vh;
+            height: 90vh;
 
             display: flex;
             justify-content: center;
             align-items: center;
 
             margin: 10px 10px 10px;
+        }
+
+        .content-container {
+            border: 2.5px solid #a2a2a2;
+            background-color: rgba(255, 228, 196, 0.2);
+            padding: 5%;
         }
     </style>
 </head>
@@ -32,7 +38,7 @@
 
     <div class="main-container">
         <!-- main container for login form -->
-        <div class="box">
+        <div class="box content-container">
             <div class="block title is-4 ">Enter email</div>
             <!-- if username and password does not match then error message will be printed here. -->
             {% with messages = get_flashed_messages(with_categories=true) %}
@@ -53,15 +59,15 @@
                     <div class="control">
                         {% if form.email.errors %}
                         {{ form.email(class="input is-danger") }}
-    
+
                         {% for error in form.email.errors %}
                         <p class="help is-danger">{{ error }}</p>
                         {% endfor %}
-    
+
                         {% else %}
                         {{ form.email(class="input", placeholder='eg. demo@email.com') }}
                         {% endif%}
-    
+
                     </div>
                 </div>
 
