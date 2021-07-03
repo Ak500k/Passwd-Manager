@@ -53,23 +53,20 @@
         }
 
         #passwd {
-            visibility: hidden;
-
+            /* visibility: hidden; */
+            content-visibility:hidden;
         }
 
-        #box:checked+input {
-            visibility: visible;
+        #box:checked+#passwd {
+            /* visibility: visible; */
+            content-visibility:visible;
+            font-size: 1em;
         }
+        input.size {
+        width: 18px;
+        height: 18px;
+      }
     </style>
-    <script>
-        function copyPasswd() {
-            var copyText = document.getElementById("passwd");
-            copyText.select();
-            copyText.setSelectionRange(0, 99999)
-            document.execCommand("copy");
-            alert("Copied the text: " + copyText.value);
-        }
-    </script>
 </head>
 
 <body>
@@ -82,11 +79,10 @@
                 <thead>
                     <tr>
                         <th>SL</th>
-                        <th>WEBSITE</th>
-                        <th>USERNAME</th>
-                        <th>EMAIL</th>
-                        <th>SHOW PASSWORD</th>
-                        <th>COPY</th>
+                        <th>WEBSITES</th>
+                        <th>USERNAMES</th>
+                        <th>EMAILS</th>
+                        <th>PASSWORDS</th>
                         <th>ACTIONS</th>
                     </tr>
                 </thead>
@@ -115,9 +111,7 @@
                         <td>{{ element.username }}</td>
                         <td>{{ element.email }}</td>
 
-                        <td class="fa fa-eye">&Tab;<input type="checkbox" id="box" />&Tab;<input
-                                value="{{ element.password }}" id="passwd"></input></td>
-                        <th><button type="button" id="button" class="button" onclick="copyPasswd()">Copy</button></th>
+                        <td><input type="checkbox" id="box" class="size"/>&Tab;<input value="{{ element.password }}" id="passwd"></input></td>
                         <td>
                             <a href="{{url_for('add')}}"><button class="button is-warning is-light">
                                     <ion-icon name="add-circle-outline" size='large'></ion-icon>
