@@ -54,24 +54,26 @@
 
         #passwd {
             /* visibility: hidden; */
-            -moz-content-visibility:hidden;
-            -webkit-content-visibility:hidden;
-            content-visibility:hidden;
+            -moz-content-visibility: hidden;
+            -webkit-content-visibility: hidden;
+            content-visibility: hidden;
         }
 
         #box:checked+#passwd {
             /* visibility: visible; */
-            -moz-content-visibility:visible;
-            -webkit-content-visibility:visible;
-            content-visibility:visible;   
+            -moz-content-visibility: visible;
+            -webkit-content-visibility: visible;
+            content-visibility: visible;
         }
+
         input {
             font-size: 1em;
         }
+
         input.size {
-        width: 18px;
-        height: 18px;
-      }
+            width: 18px;
+            height: 18px;
+        }
     </style>
 </head>
 
@@ -117,7 +119,8 @@
                         <td>{{ element.username }}</td>
                         <td>{{ element.email }}</td>
 
-                        <td><input type="checkbox" id="box" class="size"/>&Tab;<input value="{{ element.password }}" id="passwd"></input></td>
+                        <td><input type="checkbox" id="box" class="size" />&Tab;<input value="{{ element.password }}"
+                                id="passwd"></input></td>
                         <td>
                             <a href="{{url_for('add')}}"><button class="button is-warning is-light">
                                     <ion-icon name="add-circle-outline" size='large'></ion-icon>
