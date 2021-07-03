@@ -48,18 +48,24 @@
 
         table {
             text-align: center;
-
             border-radius: 15px;
+            font-size: 1em;
         }
 
         #passwd {
             /* visibility: hidden; */
+            -moz-content-visibility:hidden;
+            -webkit-content-visibility:hidden;
             content-visibility:hidden;
         }
 
         #box:checked+#passwd {
             /* visibility: visible; */
-            content-visibility:visible;
+            -moz-content-visibility:visible;
+            -webkit-content-visibility:visible;
+            content-visibility:visible;   
+        }
+        input {
             font-size: 1em;
         }
         input.size {
