@@ -1,5 +1,6 @@
 import os
-import secrets
+# import secrets
+from os import urandom
 from PIL import Image
 from flask import render_template, flash, redirect, url_for, request
 from loginapp import app, db, bcrypt, mail
@@ -167,7 +168,8 @@ def reset_token(token):
     return render_template('reset_token.html', title='Reset Password', form = form)
 
 def save_picture(form_picture):
-    random_hex = secrets.token_hex(8)
+    # random_hex = secrets.token_hex(8)
+    random_hex = urandom(8).hex()
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
     picture_path = os.path.join(app.root_path, 'static/profile_pics', picture_fn)
