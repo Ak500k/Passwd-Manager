@@ -28,7 +28,7 @@ Go to local host @ (localhost:8000/home)
 
 
 # Join our Community:: 
-<a href="https://t.me/+cEvv7j4re49jNGZl">
+<a href="https://telegram.me/+cEvv7j4re49jNGZl">
     <img width="80px" src="https://www.vectorlogo.zone/logos/telegram/telegram-icon.svg" /></a>&ensp;&nbsp;&nbsp;
     <a href="https://www.instagram.com/geeky.ak/">
     <img width="80px" src="https://www.vectorlogo.zone/logos/instagram/instagram-icon.svg" />
