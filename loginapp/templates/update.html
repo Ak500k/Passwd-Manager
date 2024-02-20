@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"
+    />
     {% if title %}
     <title>app-{{title}}</title>
     {% else %}
@@ -10,141 +12,113 @@
     {% endif %}
 
     <style>
-        .main-container {
+      .main-container {
+        border: 2.5px solid #a2a2a2;
+        background-color: #fbecff;
+        border-radius: 15px;
+        max-width: 100vw;
+        height: 90vh;
 
-            border: 2.5px solid #a2a2a2;
-            background-color: #fbecff;
-            border-radius: 15px;
-            max-width: 100vw;
-            height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        margin: 10px 10px 10px;
+      }
 
-            margin: 10px 10px 10px;
-        }
-
-        .content-container {
-            border: 2.5px solid #a2a2a2;
-            background-color: rgba(255, 228, 196, 0.2);
-            padding-right: 10%;
-            padding-left: 10%;
-        }
+      .content-container {
+        border: 2.5px solid #a2a2a2;
+        background-color: rgba(255, 228, 196, 0.2);
+        padding-right: 10%;
+        padding-left: 10%;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    {% extends "navbar.html" %}
-    {% block content %}
-
+  <body>
+    {% extends "navbar.html" %} {% block content %}
     <div class="main-container">
-        <!-- main container for Register form -->
-        <div class="content-container box">
-            <!-- heading -->
-            <div class="block title is-4">Update</div>
+      <div class="content-container box">
+        <!-- heading -->
+        <div class="block title is-4">Update</div>
 
-            <!-- form content -->
-            <form method='POST' action="">
-                {{ form.hidden_tag() }}
-                <div class="field">
-                    {{ form.webaddress.label(class="label") }}
-                    <div class="control has-icons-left">
-                        {% if form.webaddress.errors %}
-                        {{ form.webaddress(class="input is-danger", type="text", placeholder="https://example.com",
-                        value="") }}
-                        <span class="icon is-small is-left">
-                            <ion-icon name="link" style="font-size: 20px;"></ion-icon>
-                        </span>
-                        {% for error in form.webaddress.errors %}
-                        <p class="help is-danger">{{ error }}</p>
-                        {% endfor %}
-                        {% else %}
-                        {{ form.webaddress(class="input", type="text", placeholder="https://example.com") }}
-                        <span class="icon is-small is-left">
-                            <ion-icon name="link" style="font-size: 20px;"></ion-icon>
-                        </span>
-                        {% endif %}
-                    </div>
-                </div>
+        <!-- form content -->
+        <form method="POST" action="">
+          {{ form.hidden_tag() }} {% set input_attrs = {'class': 'input',
+          'placeholder': ''} %}
 
-                <div class="field">
-                    {{ form.username.label(class="label") }}
-                    <div class="control has-icons-left">
-                        {% if form.username.errors %}
-                        {{ form.username(class="input is-danger", type="text", placeholder="Username", value="") }}
-                        <span class="icon is-small is-left">
-                            <ion-icon name="person"></ion-icon>
-                        </span>
-                        {% for error in form.username.errors %}
-                        <p class="help is-danger">{{ error }}</p>
-                        {% endfor %}
-                        {% else %}
-                        {{ form.username(class="input", type="text", placeholder="Username") }}
-                        <span class="icon is-small is-left">
-                            <ion-icon name="person"></ion-icon>
-                        </span>
-                        {% endif %}
-                    </div>
-                </div>
+          <!-- Web Address -->
+          <div class="field">
+            {{ form.webaddress.label(class="label") }}
+            <div class="control has-icons-left">
+              {{ form.webaddress(**input_attrs) }}
+              <span class="icon is-small is-left">
+                <ion-icon name="link" style="font-size: 20px"></ion-icon>
+              </span>
+              {% for error in form.webaddress.errors %}
+              <p class="help is-danger">{{ error }}</p>
+              {% endfor %}
+            </div>
+          </div>
 
-                <div class="field">
-                    <!-- email field -->
-                    {{ form.email.label(class="label") }}
-                    <div class="control has-icons-left">
-                        <!-- Adding validation code -->
-                        {% if form.email.errors %}
-                        {{ form.email(class="input is-danger", type="text", placeholder="eg. demo@email.com", value="")
-                        }}
-                        <span class="icon is-small is-left">
-                            <ion-icon name="mail" style="font-size: 20px;"></ion-icon>
-                        </span>
-                        {% for error in form.email.errors %}
-                        <p class="help is-danger">{{ error }}</p>
-                        {% endfor %}
-                        {% else %}
-                        {{ form.email(class="input", type="email", placeholder="eg. demo@email.com") }}
-                        <span class="icon is-small is-left">
-                            <ion-icon name="mail" style="font-size: 20px;"></ion-icon>
-                        </span>
-                        {% endif %}
-                    </div>
-                </div>
+          <!-- Username -->
+          <div class="field">
+            {{ form.username.label(class="label") }}
+            <div class="control has-icons-left">
+              {{ form.username(**input_attrs) }}
+              <span class="icon is-small is-left">
+                <ion-icon name="person"></ion-icon>
+              </span>
+              {% for error in form.username.errors %}
+              <p class="help is-danger">{{ error }}</p>
+              {% endfor %}
+            </div>
+          </div>
 
-                <div class="field">
-                    <!-- password field -->
-                    {{ form.password.label(class="label") }}
-                    <div class="control has-icons-left">
-                        <!-- Adding validation code -->
-                        {% if form.password.errors %}
-                        {{ form.password(class="input is-danger", type="password", placeholder="Password", value="") }}
-                        <span class="icon is-small is-left">
-                            <ion-icon name="lock-closed" style="font-size: 20px;"></ion-icon>
-                        </span>
-                        {% for error in form.password.errors %}
-                        <p class="help is-danger">{{ error }}</p>
-                        {% endfor %}
-                        {% else %}
-                        {{ form.password(class="input", type="password", placeholder="Password") }}
-                        <span class="icon is-small is-left">
-                            <ion-icon name="lock-closed" style="font-size: 20px;"></ion-icon>
-                        </span>
-                        {% endif %}
-                    </div>
-                </div>
+          <!-- Email -->
+          <div class="field">
+            {{ form.email.label(class="label") }}
+            <div class="control has-icons-left">
+              {{ form.email(**input_attrs, type="email") }}
+              <span class="icon is-small is-left">
+                <ion-icon name="mail" style="font-size: 20px"></ion-icon>
+              </span>
+              {% for error in form.email.errors %}
+              <p class="help is-danger">{{ error }}</p>
+              {% endfor %}
+            </div>
+          </div>
 
-                <div class="control">
-                    <!-- submit btn -->
-                    {{ form.submit_btn(class="button is-primary") }}
-                </div>
+          <!-- Password -->
+          <div class="field">
+            {{ form.password.label(class="label") }}
+            <div class="control has-icons-left">
+              {{ form.password(**input_attrs, type="password") }}
+              <span class="icon is-small is-left">
+                <ion-icon name="lock-closed" style="font-size: 20px"></ion-icon>
+              </span>
+              {% for error in form.password.errors %}
+              <p class="help is-danger">{{ error }}</p>
+              {% endfor %}
+            </div>
+          </div>
 
-            </form>
-        </div>
+          <div class="control">
+            {{ form.submit_btn(class="button is-primary") }}
+          </div>
+        </form>
+      </div>
     </div>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
 
     {% endblock %}
-</body>
-
+  </body>
 </html>
