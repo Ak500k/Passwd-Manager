@@ -1,13 +1,13 @@
 import os
+# import secrets
 from os import urandom
 from PIL import Image
 from flask import render_template, flash, redirect, url_for, request
 from loginapp import app, db, bcrypt, mail
 from loginapp.forms import RegistrationForm, LoginForm, AddPassword, RequestResetForm, ResetPasswordForm, UserAccountUpdate, UpdatePassword
 from loginapp.models import User, PasswordManager
-from flask_login import login_user, current_user, logout_user, login_required
+from flask_login import login_user, current_user, logout_user, login_required # this line is important. Allows us to login the user.
 from flask_mail import Message
-
 """
     File containes only routes
     Don't add any other things
@@ -36,8 +36,9 @@ def register():
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')  # creating hashed password
         
-        # creating variable user and initilizing the values of name, email, password. Template -> models.py
-        user = User(name = form.name.data, email = form.email.data, password = hashed_password)
+        user = User(name = form.name.data, 
+                    email = form.email.data, 
+                    password = hashed_password) # creating variable user and initilizing the values of name, email, password. Template -> models.py
         
         db.session.add(user) # adding user to table
         db.session.commit()  # commiting the table
@@ -45,6 +46,7 @@ def register():
         return redirect(url_for('home'))
 
     return render_template('register.html', title=page_title, form=form)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -139,15 +141,10 @@ def reset_request():
     form = RequestResetForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
-        
-        # Always flash a success message to avoid leaking information
-        flash('An email has been sent with instructions to reset your password.', 'info')
-        
-        if user:
-            send_reset_email(user)
+        send_reset_email(user)
+        flash('An email has been set with instructions to reset you password.', 'info')
         return redirect(url_for('login'))
-
-    return render_template('reset_request.html', title='Reset Password', form=form)
+    return render_template('reset_request.html', title='Reset Password', form = form)
 
 @app.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_token(token):
@@ -207,17 +204,11 @@ def account():
 @app.route('/delete/<int:sl>')
 @login_required
 def delete(sl):
-    try:
-        field = db.session.query(PasswordManager).filter_by(sl=sl).first()
-        if field:
-            db.session.delete(field)
-            db.session.commit()
-            flash('Field deleted', 'success')
-        else:
-            flash('Field not found', 'danger')
-    except Exception as e:
-        flash(f'Error deleting field: {str(e)}', 'danger')
-
+    # field = PasswordManager.query.filter_by(sl=sl).first()
+    field = db.session.query(PasswordManager).filter_by(sl=sl).first()
+    db.session.delete(field)
+    db.session.commit()
+    print('Field deleted')
     return redirect(url_for('display'))
 
 @app.route('/update/<int:sl>', methods=['GET', 'POST'])
